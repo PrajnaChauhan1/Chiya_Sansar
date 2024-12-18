@@ -1,0 +1,174 @@
+<meta charset="UTF-8">
+<html xmlns:th="http://www.thymeleaf.org">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Home Page</title>
+<link rel="stylesheet" href="css/homepagees.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+<body>
+    <header>
+        <div class="logo">
+            <img src="images/Natural Organic Green Tea Logo 1.png" alt="Logo">
+        </div>
+        <nav>
+            <div class="purchase-history">
+                <a href="/history">PURCHASE HISTORY</a>
+                <a href="/pendingorders">PENDING ORDERS</a>
+            </div>
+        </nav>
+        <div class="search-bar">
+            <input type="text" placeholder="Search...">
+            <button><i class="fas fa-search"></i></button>
+        </div>
+        <div class="user-info">
+            <i class="fas fa-user-circle"></i>
+            <span>Hi, User!</span>
+        </div>
+
+
+        <div class="logout">
+            <a href="/logout">LOGOUT <i class="fas fa-arrow-right-from-bracket"></i></a>
+        </div>
+    </header>
+    <section class="home-section">
+        <div class="content">
+            <h1>With Chiya Sansar </p> It's Always Tea Time</h1>
+            <a href="/allproducts" class="shop-now">Shop Now</a>
+        </div>
+        <div class="change-image">
+            <button class="change-image-btn">&#10095;</button>
+        </div>
+    </section>
+    <section class="introduction">
+        <p th:if="${error}" style="color: red;"
+		th:text="${error}"></p>
+	<p th:if="${success}" style="color: green;"
+		th:text="${success}"></p>
+        <h2>INTRODUCING CHIYA SANSAR</h2>
+        <div class="intro-content">
+            <div class="intro-video">
+                <video src="videos/tealeaves2.mp4" loop muted autoplay></video>
+            </div>
+            <div class="intro-text">
+                <p>
+                    Chiya Sansar offers the finest natural organic tea, hand-picked by local farmers in Nepal's lush
+                    Himalayan regions.
+                    Their blends are rich in flavor, full of health benefits, and 100% organic.
+                </p>
+                <p>
+                    Committed to sustainability and supporting local communities, Chiya Sansar delivers premium teas
+                    that are environmentally friendly
+                    and packed with antioxidants, perfect for health-conscious tea lovers.
+                </p>
+                <a href="/aboutus" class="read-more">Read More &rarr;</a>
+            </div>
+        </div>
+    </section>
+    <div class="divider"></div>
+
+    <section class="shop-category">
+        <h2>Popular Products</h2>
+        <div class="category-container">
+            <div class="category-box">
+                <img src="images/popularr.png" alt="Everest Black(Top of the World Tea)">
+                <p>Everest Black(Top of the World Tea)</p>
+            </div>
+            <div class="category-box">
+                <img src="images/popular.png" alt="Kanchanjungha Verde-Preminum Green">
+                <p>Kanchanjungha Verde-Preminum Green</p>
+            </div>
+            <div class="category-box">
+                <img src="images/popular1.png" alt="Nepali Breakfast(Classic Chiya)-15 Pyramid Tea Bags">
+                <p>Nepali Breakfast(Classic Chiya)-15 Pyramid Tea Bags</p>
+            </div>
+            <div class="category-box">
+                <img src="images/popular2.png" alt="Tea Bags-Bundle of 4[Black Tea, Green Tea, Chaiya & Herbal Blend]">
+                <p>Tea Bags-Bundle of 4[Black Tea, Green Tea, Chaiya & Herbal Blend]</p>
+            </div>
+        </div>
+    </section>
+    <section class="why-choose-us">
+        <h2>Why Choose Us?</h2>
+        <div class="icons-container">
+            <div class="icon-box">
+                <img src="images/pictures9.png" alt="Icon 1">
+                <p>Wildcrafted & Organic</p>
+            </div>
+            <div class="icon-box">
+                <img src="images/pictures10.png" alt="Icon 2">
+                <p>Fast Delivery</p>
+            </div>
+            <div class="icon-box">
+                <img src="images/pictures11.png" alt="Icon 3">
+                <p>Satisfaction Guranteed</p>
+            </div>
+        </div>
+    </section>
+    <section class="hear-from-customers">
+        <h2>HEAR FROM OUR CUSTOMERS</h2>
+        <div class="testimonials">
+            <div class="testimonial-box">
+                <h3>Utsav Kattel</h3>
+                <img src="images/ratings.png" alt="5-star rating">
+                <p>
+                    "Chiya Sansar's natural tea has completely transformed my daily routine. The flavor is so pure and
+                    fresh, and knowing it's hand-picked and organic makes it even more enjoyable. I feel energized and
+                    balanced every time I sip it."
+                </p>
+            </div>
+            <div class="testimonial-box">
+                <h3>Pragya Chauhan</h3>
+                <img src="images/ratings.png" alt="5-star rating">
+                <p>
+                    "This is the best tea I've ever tasted! The aroma alone is incredible, and the smooth, rich taste is
+                    simply unmatched. Plus, it's great to know I'm supporting sustainable practices while enjoying such
+                    a healthy drink."
+                </p>
+            </div>
+            <div class="testimonial-box">
+                <h3>Nilesh Guragain</h3>
+                <img src="images/ratings.png" alt="5-star rating">
+                <p>
+                    "I absolutely love Chiya Sansar's natural tea. It's a refreshing, guilt-free indulgence that makes
+                    me feel healthier with each cup. I also appreciate that it's sourced ethically by local farmers—such
+                    a wonderful touch."
+                </p>
+            </div>
+        </div>
+    </section>
+    <section class="background-section">
+        <div class="background-text">
+            <h2>NEPAL TEA EXCHANGE ON A GLOBAL MISSION</h2>
+            <p>Discover The True Tea Experience</p>
+        </div>
+    </section>
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <img src="images/Natural Organic Green Tea Logo 1.png" alt="Chiya Sansar Logo" class="footer-logo">
+            </div>
+            <div class="footer-section">
+                <h4>Contact Information</h4>
+                <p>Phone: 01-4141414</p>
+                <p>Email: chiyasansar@gmail.com</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h4>Contact Information</h4>
+                <p>Phone: 01-4141414</p>
+            </div>
+            <div class="footer-section">
+                <h4>Website Created by</h4>
+                <p>Pragya Chauhan & Sameer Khatri</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 by Chiya Sansar | All rights Reserved |</p>
+        </div>
+    </footer>
+</body>
+</html>

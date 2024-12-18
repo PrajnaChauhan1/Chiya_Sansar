@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/productshowcase.css">
+    <title>Product Showcase</title>
+</head>
+
+<body>
+    <div class="navbar">
+        <img src="images/Natural Organic Green Tea Logo 1.png" alt="" class="logo">
+        <div class="buttons">
+            <a href="">Home</a>
+            <a href="">About Us</a>
+            <a href="">Contact Us</a>
+        </div>
+        <div class="searcharea">
+            <input type="text" class="search" placeholder="Search..."></input>
+            <a href="/search"><img src="images/searchicon.png" class="searchicon" alt="search"></a>
+        </div>
+        <a href="" class="login">LOGIN</a>
+    </div>
+
+    <div class="container">
+        <div class="product">
+            <!-- Display thumbnail dynamically -->
+            <img th:src="@{${product.imagePath}}" alt="" class="thumbnail">
+            <div class="infos">
+                <!-- Product name from backend -->
+                <h2 th:text="${product.name}"></h2>
+                <img src="images/5star.png" alt="">
+                <!-- Price from backend -->
+                <span class="price" th:text="'Rs. ' + ${product.price}"></span>
+                <a th:href="@{/buy(id=${product.id})}" class="buy">Buy Now</a>
+                <!-- Product description with specific formatting -->
+                <span th:utext="${product.description}" class="description">
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <div class="instruction">
+        <h2>Steeping Instructions</h2>
+        <img src="images/instructions.png" alt="" class="imageofinstructions">
+        <img src="images/line.png" alt="">
+        <h2>Ingredients</h2>
+        <!-- Ingredients from backend -->
+        <h5 th:text="${product.ingredients}"></h5>
+        <img src="images/line.png" alt="">
+    </div>
+    <img src="images/chooseus.png" alt="" class="chooseus">
+    <img src="images/steamchiya.png" alt="" class="steamchiya">
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-logo">
+                <img src="images/Natural Organic Green Tea Logo 1.png" alt="Chiya Sansar Logo" class="logo">
+            </div>
+            <div class="footer-contact">
+                <h4>Contact Information</h4>
+                <p>Phone: 01-41414141</p>
+                <p>Email: chiyasansar@gmail.com</p>
+                <div class="social-icons">
+                    <a href="#"><img src="images/download 48.png" alt="Facebook"></a>
+                    <a href="#"><img src="images/download 49.png" alt="Instagram"></a>
+                </div>
+            </div>
+            <div class="footer-credits">
+                <h4>Website Created by</h4>
+                <p>Pragya Chauhan & Sameer Khatri</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <hr>
+            <p>&copy; 2024 by Chiya Sansar | All rights Reserved |</p>
+        </div>
+    </footer>
+</body>
+
+</html>

@@ -1,0 +1,464 @@
+body {
+	font-family: Arial, sans-serif;
+	margin: 0;
+	padding: 0;
+}
+
+header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	background-color: #f8f9fa;
+	padding: 10px 20px;
+}
+
+.logo img {
+	height: 50px;
+}
+
+nav ul {
+	list-style: none;
+	display: flex;
+	margin: 0;
+	padding: 0;
+}
+
+nav ul li {
+	margin: 0 15px;
+}
+
+nav ul li a {
+	text-decoration: none;
+	color: #000;
+	font-size: 18px;
+}
+
+.search {
+	display: flex;
+	align-items: center;
+}
+
+.search input {
+	padding: 5px;
+	font-size: 16px;
+}
+
+.search button {
+	background: none;
+	border: none;
+	cursor: pointer;
+	height: 30px;;
+}
+
+.login {
+	display: flex;
+	align-items: center;
+}
+
+.login img {
+	height: 30px;
+	margin-right: 10px;
+}
+
+.login a {
+	text-decoration: none;
+	color: #000;
+	font-size: 18px;
+}
+
+.home-section {
+	position: relative;
+	background: url('tealeaves.png') no-repeat center center/cover;
+	height: 100vh;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	color: white;
+	padding: 70px;
+}
+
+.content {
+	max-width: 600px;
+}
+
+@import
+	url('https://fonts.googleapis.com/css2?family=Montaga&display=swap');
+
+.content h1 {
+	font-size: 3rem;
+	margin-bottom: 20px;
+	font-family: "Montaga", serif;
+}
+
+.shop-now {
+	background-color: rgba(45, 91, 78, 100%);
+	text-decoration:none;
+	color: white;
+	padding: 80px 90px;
+	border: none;
+	cursor: pointer;
+	font-size: 1.2rem;
+	align-items: center;
+	font-family: "Montaga", serif;
+}
+
+.change-image {
+	display: flex;
+	align-items: center;
+}
+
+.change-image-btn {
+	background: none;
+	border: none;
+	color: white;
+	font-size: 2rem;
+	cursor: pointer;
+}
+
+.shop-category {
+	text-align: center;
+	padding: 50px 20px;
+	background-color: #f5f5f5;
+}
+
+.shop-category h2 {
+	font-size: 2.5rem;
+	margin-bottom: 30px;
+}
+
+.category-container {
+	display: flex;
+	justify-content: space-around;
+}
+
+.category-container {
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	text-align: center;
+}
+
+.divider {
+	margin-top: 40px;
+	border-top: 2px solid #222;
+}
+
+footer {
+	background-color: #096d47;
+	padding: 20px;
+	text-align: left;
+}
+
+.search {
+	display: flex;
+	align-items: center;
+}
+
+.search input {
+	padding: 5px;
+	font-size: 16px;
+	border-radius: 20px 0 0 20px;
+}
+
+.search button {
+	background: none;
+	border: 1px solid #ccc;
+	border-left: none;
+	cursor: pointer;
+	padding: 5px 10px;
+	border-radius: 0 20px 20px 0; /* Circular edges on the right */
+}
+
+.search button img {
+	height: 20px; /* Adjust size as needed */
+	width: 20px; /* Adjust size as needed */
+}
+
+.shop-now {
+	background-color: #096d47;
+	color: white;
+	padding: 10px 20px;
+	border: none;
+	cursor: pointer;
+	font-size: 1.2rem;
+	border-radius: 5px;
+}
+
+.shop-category {
+	text-align: center;
+	padding: 50px 20px;
+	background-color: #f5f5f5;
+}
+
+.shop-category h2 {
+	font-size: 2.5rem;
+	margin-bottom: 30px;
+	color: #096d47;
+}
+
+.category-container {
+	display: flex;
+	justify-content: space-around;
+	flex-wrap: wrap;
+	gap: 10px;
+}
+
+.category-box {
+	width: 200px;
+	background-color: #096d47;
+	padding: 10px;
+	box-shadow: 0 4px 8px rgba(248, 249, 250, 0.1);
+	text-align: center;
+	border-radius: 10px;
+}
+
+.category-box img {
+	width: 100%;
+	height: auto;
+	cursor: pointer;
+}
+
+.category-box p {
+	margin-top: 15px;
+	font-size: 1rem;
+	color: white;
+	cursor: pointer;
+}
+
+.introduction {
+	background-color: #fff;
+	padding: 50px 20px;
+	text-align: center;
+}
+
+.introduction {
+	background-color: #fff;
+	padding: 50px 20px;
+	text-align: center;
+}
+
+.introduction h2 {
+	font-size: 2.5rem;
+	margin-bottom: 30px;
+	color: #096d47
+}
+
+.intro-content {
+	display: flex;
+	align-items: flex-start;
+	justify-content: center;
+}
+
+.intro-video video {
+	max-width: 100%;
+	height: 5000 px;
+	border-radius: 10px;
+	 pointer-events: none;
+}
+
+.intro-text {
+	max-width: 600px;
+	margin-left: 40px;
+	text-align: left;
+}
+
+.intro-text p {
+	font-size: 2rem;
+	margin-bottom: 40px;
+	color: black;
+	font-family: "Montaga", serif;
+}
+
+.read-more {
+	font-weight: bold;
+	color: #000;
+	text-decoration: none;
+	display: inline-flex;
+	align-items: center;
+}
+
+.read-more:hover {
+	text-decoration: underline;
+}
+
+.read-more .arrow {
+	margin-left: 5px;
+	font-size: 1.2em;
+}
+
+.why-choose-us {
+	background-color: #096d47;
+	padding: 20px 20px;
+	text-align: center;
+}
+
+.why-choose-us h2 {
+	font-size: 2.5rem;
+	margin-bottom: 30px;
+	color: white;
+}
+
+.icons-container {
+	display: flex;
+	justify-content: space-around;
+	flex-wrap: wrap; /* Ensure items wrap if they exceed container width */
+	gap: 20px; /* Adds spacing between items */
+}
+
+.icon-box {
+	width: 200px;
+	text-align: center;
+	background-color: #096d47;
+	padding: 20px;
+	border-radius: 10px;
+}
+
+.icon-box img {
+	width: 100px;
+	height: auto;
+	margin-bottom: 10px;
+}
+
+.icon-box p {
+	font-size: 1rem;
+	color: white;
+	margin-top: 10px;
+}
+
+.hear-from-customers {
+	background-color: #fff;
+	padding: 50px 20px;
+	text-align: center;
+}
+
+.hear-from-customers h2 {
+	font-size: 2.5rem;
+	margin-bottom: 30px;
+	color: #096d47;
+}
+
+.testimonials {
+	display: flex;
+	justify-content: space-around;
+	flex-wrap: wrap; /* Ensure items wrap if they exceed container width */
+	gap: 20px; /* Adds spacing between items */
+}
+
+.testimonial-box {
+	width: 300px;
+	text-align: center;
+	background-color: #f9f9f9;
+	padding: 20px;
+	border-radius: 10px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.testimonial-box h3 {
+	font-size: 1.5rem;
+	margin-bottom: 10px;
+}
+
+.testimonial-box img {
+	width: 100px;
+	height: auto;
+	margin-bottom: 10px;
+}
+
+.testimonial-box p {
+	font-size: 1rem;
+	color: #333;
+	margin-top: 10px;
+}
+
+.background-section {
+	position: relative;
+	background: url('tealeaves2.png') no-repeat center center/cover;
+	height: 100vh;
+	display: flex;
+	align-items: center;
+	color: white;
+	padding: 20px;
+}
+
+.background-text {
+	max-width: 600px;
+	text-align: left;
+}
+
+.background-text h2 {
+	font-size: 3rem;
+	margin-bottom: 20px;
+}
+
+.background-text p {
+	font-size: 1.5rem;
+}
+
+.footer {
+	background-color: #1b5b42;
+	color: white;
+	font-family: Arial, sans-serif;
+	padding: 20px 50px;
+}
+
+.footer-content {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	align-items: flex-start;
+}
+
+.footer-logo .logo {
+	width: 80px;
+	margin-bottom: 10px;
+}
+
+.footer-contact h4, .footer-credits h4 {
+	margin-bottom: 10px;
+	font-size: 1.2rem;
+	color: white;
+}
+
+.footer-contact h4, .footer-credits h4 {
+	margin-bottom: 10px;
+	font-size: 1.2rem;
+}
+
+.footer-contact p, .footer-credits p {
+	margin: 5px 0;
+	font-size: 0.9rem;
+}
+
+.social-icons a img {
+	width: 20px; /* Icon size */
+	margin-right: 10px;
+	transition: transform 0.3s ease;
+}
+
+.social-icons a img:hover {
+	transform: scale(1.2);
+}
+
+.footer-bottom {
+	text-align: center;
+	margin-top: 20px;
+}
+
+.footer-bottom hr {
+	border: 0.5px solid white;
+	margin-bottom: 10px;
+}
+
+.footer-bottom p {
+	font-size: 0.9rem;
+	text-align: center;
+}
+
+@media ( max-width : 768px) {
+	.footer-content {
+		flex-direction: column;
+		align-items: center;
+		text-align: center;
+	}
+}
