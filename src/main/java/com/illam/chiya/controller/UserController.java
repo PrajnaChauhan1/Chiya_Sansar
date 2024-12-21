@@ -27,8 +27,8 @@ public class UserController {
 	BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
 	@GetMapping({ "/", "/home" })
-	public String homepage() {
-
+	public String homepage(HttpSession session) {
+		session.removeAttribute("purchaseattemptproductid");
 		return "homepage";
 	}
 
@@ -92,6 +92,7 @@ public class UserController {
 			attribute.addFlashAttribute("error", "Please login");
 			return "redirect:/login";
 		}
+		session.removeAttribute("purchaseattemptproductid");
 		User user =(User) session.getAttribute("user");
 		model.addAttribute("username", user.getFullName());
 		return "userDashboard";

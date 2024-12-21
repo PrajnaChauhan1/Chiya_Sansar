@@ -1,0 +1,300 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montaga&display=swap');
+
+body {
+    padding: 0;
+    margin: 0;
+    font-family: Montserrat;
+}
+
+.navbar {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.logo {
+    height: 80px;
+    margin-left: 50px;
+}
+
+.button {
+    text-decoration: none;
+    color: #2D5B4E;
+    border: 3px solid #2D5B4E;
+    width: 250px;
+    margin-left: 50px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 0px 2px, rgba(0, 0, 0, 0.25) 0px 3px 0px;
+    font-weight: bold;
+}
+
+.search {
+    background-color: #d4d4d4;
+    border-radius: 30px;
+    width: 350px;
+    height: 50px;
+    margin-left: 150px;
+}
+
+.searchfield {
+    border: none;
+    background-color: #d4d4d4;
+    margin-left: 20px;
+    width: 280px;
+    height: 30px;
+}
+
+.form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 9px;
+}
+
+.searchbutton {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.searchicon {
+    height: 30px;
+    width: 30px;
+}
+
+.searchfield::placeholder {
+    color: black;
+    font-family: Montserrat;
+    font-size: medium;
+    font-weight: bold;
+}
+
+.profile {
+    height: 50px;
+    margin-left: 100px;
+}
+
+.hi {
+    color: #2D5B4E;
+    font-weight: bold;
+    margin-left: 20px;
+}
+
+.logout {
+    background-color: #2D5B4E;
+    width: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3px;
+    margin-left: 50px;
+    height: 30px;
+}
+
+.logouting {
+    text-decoration: none;
+    color: white;
+    margin-right: 4px;
+}
+
+.main-container {
+    background-image: url(userdashboardbackground.png);
+    height: 600px;
+}
+
+.catchyphrase {
+    font-size: 50px;
+    color: white;
+    font-family: 'Montaga', serif;
+    margin-left: 100px;
+}
+.shopnow{
+    background-color: #2D5B4E;
+    text-decoration: none;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 140px;
+    height: 40px;
+    font-size: x-large;
+    box-shadow: 0px 8.57px 3.81px rgba(0, 0, 0, 0.25);
+    margin-left: 250px;
+    margin-top: 50px;
+}
+.second-container{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+.sub-container{
+    display: flex;
+    flex-direction: row;
+}
+.welcome{
+    color: #2D5B4E;
+}
+.video{
+    width: 700px;
+    margin-left: 50px;
+}
+.about{
+    text-align: left;
+    margin-left: 50px;
+    font-size: x-large;
+}
+.greenline{
+    height: 30px;
+    background-color: #2D5B4E;
+    margin-top: 50px;
+}
+.third-container{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+.products{
+    display: flex;
+    flex-direction: row;
+}
+.imgtext{
+    margin-left: 50px;
+    text-align: center;
+    font-weight: bold;
+    margin-right: 50px;
+    margin-top: 50px;
+}
+.imgtext img{
+    max-height: 250px;
+}
+.whychooseus{
+    max-width: 100%;
+    margin-top: 50px;
+}
+.hear-from-customers {
+	background-color: #fff;
+	padding: 50px 20px;
+	text-align: center;
+}
+
+.hear-from-customers h2 {
+	font-size: 2.5rem;
+	margin-bottom: 30px;
+	color: #096d47;
+}
+
+.testimonials {
+	display: flex;
+	justify-content: space-around;
+	flex-wrap: wrap; /* Ensure items wrap if they exceed container width */
+	gap: 20px; /* Adds spacing between items */
+}
+
+.testimonial-box {
+	width: 300px;
+	text-align: center;
+	background-color: #f9f9f9;
+	padding: 20px;
+	border-radius: 10px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.testimonial-box h3 {
+	font-size: 1.5rem;
+	margin-bottom: 10px;
+}
+
+.testimonial-box img {
+	width: 100px;
+	height: auto;
+	margin-bottom: 10px;
+}
+
+.testimonial-box p {
+	font-size: 1rem;
+	color: #333;
+	margin-top: 10px;
+}
+
+.chiyacup{
+    max-width: 100%;
+}
+.footer {
+    background-color: #1b5b42;
+    color: white;
+    font-family: Arial, sans-serif;
+    padding: 20px 50px;
+}
+
+.footer-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.footer-logo .logo {
+    width: 80px;
+    margin-bottom: 10px;
+}
+
+.footer-contact h4,
+.footer-credits h4 {
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+    color: white;
+}
+
+.footer-contact h4,
+.footer-credits h4 {
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+}
+
+.footer-contact p,
+.footer-credits p {
+    margin: 5px 0;
+    font-size: 0.9rem;
+}
+
+.social-icons a img {
+    width: 20px;
+    /* Icon size */
+    margin-right: 10px;
+    transition: transform 0.3s ease;
+}
+
+.social-icons a img:hover {
+    transform: scale(1.2);
+}
+
+.footer-bottom {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.footer-bottom hr {
+    border: 0.5px solid white;
+    margin-bottom: 10px;
+}
+
+.footer-bottom p {
+    font-size: 0.9rem;
+    text-align: center;
+}
+
+@media (max-width: 768px) {
+    .footer-content {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+}

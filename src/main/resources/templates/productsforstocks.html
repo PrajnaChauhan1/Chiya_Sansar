@@ -14,8 +14,8 @@
 			class="logo">
 		<div class="buttons">
 			<a href="/home">Home</a>
-			 <a href="/aboutus">About Us</a> 
-			 <a href="/allproducts">Products</a>
+			 <a href="/aboutus">About Us</a>
+			  <a href="/allproducts">Products</a>
 		</div>
 		<div class="searcharea">
 			<input type="text" class="search" placeholder="Search..."></input> <a
@@ -26,16 +26,29 @@
 		<a href="" class="login">LOGIN</a>
 	</div>
 
-	<div></div>
 	<div class="container">
+	<p th:if="${error}" style="color: red;"
+		th:text="${error}"></p>
+	<p th:if="${success}" style="color: green;"
+		th:text="${success}"></p>
 		<span class="headingbody"> BROWSE PRODUCT </span>
 		<div th:each="chunk : ${partitionedProducts}" class="whole-container">
 			<div class="product-container">
-				<a th:each="product : ${chunk}" th:href="@{/product(id=${product.id})}" class="product"> 
-				<img th:src="@{${product.imagePath}}" alt="" class="thumbnail"/> <br> 
-				<span class="name" th:text="${product.name}"></span> <br> 
-				<span class="price" th:text="'Rs. ' + ${product.price}"></span>
-				</a>
+				<div th:each="product : ${chunk}">
+					<form action="#" onsubmit="return handleSubmit(this);" method="get">
+						<a href="#" onclick="return false;" class="product"> <img
+							th:src="@{${product.imagePath}}" alt="" class="thumbnail" /> <br>
+							<span class="name" th:text="${product.name}"></span> <br> <span
+							class="price" th:text="'Rs. ' + ${product.price}"></span> <br>
+						</a> <input type="number" required name="stocktoadd"
+							placeholder="Enter added Stock"> <input type="hidden"
+							name="id" th:value="${product.id}">
+						<button type="submit" class="hidden-submit-button">Submit</button>
+					</form>
+				</div>
+
+
+
 			</div>
 		</div>
 
@@ -75,5 +88,20 @@
 		</div>
 	</footer>
 </body>
+<script>
+	function handleSubmit(form) {
+		const stockInput = form.querySelector('input[name="stocktoadd"]');
+		if (!stockInput.value) {
+			alert("Please enter the stock amount.");
+			return false;
+		}
+
+		// Redirect to the desired URL with query parameters
+		const id = form.querySelector('input[name="id"]').value;
+		const stockValue = stockInput.value;
+		window.location.href = `/productforstock?id=${id}&stocktoadd=${stockValue}`;
+		return false; // Prevent the default form submission
+	}
+</script>
 
 </html>

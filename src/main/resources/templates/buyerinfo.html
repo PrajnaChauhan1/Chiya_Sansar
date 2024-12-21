@@ -14,15 +14,11 @@
         </div>
         <nav>
             <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">About Us</a></li>
-                <li><a href="#">Contact Us</a></li>
+                <li><a href="/home">Home</a></li>
+                <li><a href="/aboutus">About Us</a></li>
+                <li><a href="/allproducts">Products</a></li>
             </ul>
         </nav>
-        <div class="search-bar">
-            <input type="text" placeholder="Search...">
-            <button><i class="fas fa-search"></i></button>
-        </div>
     </header>
 
 
@@ -33,10 +29,10 @@
           <form class="details-form" action="/buy" method="post">
             <div class="left-section">
               <label for="full-name">Full Name</label>
-              <input type="text" id="full-name" placeholder="Enter your  name" required name="receiverName">
+              <input type="text" id="name" placeholder="Enter your  name" required name="receiverName">
               
               <label for="phone-number">Phone Number</label>
-              <input type="text" id="phone-number" placeholder="Please enter your phone " required name="receiverPhone">
+              <input type="text" id="phone" placeholder="Please enter your phone " required name="receiverPhone">
               
               <label for="address">Address</label>
               <input type="text" id="address" placeholder="Please enter your address" required name="deliveryLocation">
@@ -90,4 +86,5 @@
     </div>
   </footer>
 </body>
+<script type="text/javascript" src="js/buyerinfo.js"></script>
 </html>

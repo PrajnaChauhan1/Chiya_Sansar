@@ -77,5 +77,11 @@ public class ProductServiceImpl implements ProductsService{
 	 public Products getProductByOrderId(Long orderId) {
 	        return ordersRepo.findProductByOrderId(orderId);
 	    }
+
+	@Override
+	public List<Products> getProductBySimiliarName(String name) {
+		
+		return productRepo.findByNameContainingIgnoreCase(name);
+	}
 	
 }

@@ -67,7 +67,6 @@ public class ProductController {
 			try {
 				imagePath = productService.saveImage(image, product.getName());
 			} catch (java.io.IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			product.setImagePath(imagePath);
@@ -83,8 +82,8 @@ public class ProductController {
 
 	@GetMapping("/allproducts")
 	public String allProducts(Model model) {
-		List<Products> products = productService.getProducts(); // Original list
-		List<List<Products>> partitionedProducts = productService.partitionList(products, 3); // Partitioned
+		List<Products> products = productService.getProducts(); 
+		List<List<Products>> partitionedProducts = productService.partitionList(products, 3);
 		model.addAttribute("partitionedProducts", partitionedProducts);
 		return "allproducts";
 	}
@@ -183,11 +182,13 @@ public class ProductController {
 		order.setProduct(product);
 		productService.save(product);
 		orderService.save(order);
+		session.removeAttribute("purchaseattemptproductid");
 		return "redirect:/purchasesuccess";
 	}
 
 	@GetMapping("/purchasesuccess")
 	public String purchasesuccess(RedirectAttributes attribute) {
+		
 		attribute.addFlashAttribute("success", "Your purchase was successfull");
 		return "redirect:/userDashboard";
 	}
@@ -198,23 +199,9 @@ public class ProductController {
 			attribute.addFlashAttribute("error", "Please login before accessing your order history.");
 			return "redirect:/login";
 		}
-
 		User user = (User) session.getAttribute("user");
-
-		// Retrieve orders for the current user
 		List<Orders> orders = orderService.getOrdersByUser(user.getId());
-
-		// Fetch the associated products for each order
-		Map<Products, Orders> orderProductsMap = orders.stream()
-				.collect(Collectors.toMap(order -> productService.getProductByOrderId(order.getId()), // Assume this
-																										// fetches the
-																										// product
-																										// linked to the
-																										// order
-						order -> order));
-
-		// Add data to the model
-		model.addAttribute("orderProductsMap", orderProductsMap);
+		Map<Products, Orders> orderProductsMap = orders.stream().collect(Collectors.toMap(order -> productService.getProductByOrderId(order.getId()), order -> order));		model.addAttribute("orderProductsMap", orderProductsMap);
 		return "history";
 	}
 
@@ -226,62 +213,81 @@ public class ProductController {
 		}
 
 		User user = (User) session.getAttribute("user");
-
-		// Fetch pending orders for the user
 		List<Orders> pendingOrders = orderService.getPendingOrdersByUser(user.getId());
-
-		// Map products to their respective pending orders
 		Map<Products, Orders> pendingOrderProductsMap = pendingOrders.stream()
-				.collect(Collectors.toMap(order -> order.getProduct(),order -> order));
+				.collect(Collectors.toMap(order -> order.getProduct(), order -> order));
 		model.addAttribute("orderProductsMap", pendingOrderProductsMap);
-		model.addAttribute("isPending", true); // This will differentiate pending orders from order history
+		model.addAttribute("isPending", true);
 		return "history";
 	}
+
 	@GetMapping("/orders")
 	public String orders(HttpSession session, RedirectAttributes attribute, Model model) {
-	    if (session.getAttribute("admin") == null) {
-	        attribute.addFlashAttribute("error", "Please login");
-	        return "redirect:/login";
-	    }
-
-	    List<Orders> orders = orderService.getPendingOrders();
-	    // Map order details with associated product information
-	    List<Map<String, Object>> orderDetails = orders.stream().map(order -> {
-	    	System.out.println(order);
-	        Map<String, Object> details = new HashMap<>();
-	        details.put("productName", order.getProduct().getName());
-	        details.put("price", order.getProduct().getPrice());
-	        details.put("ingredients", order.getProduct().getIngredients());
-	        details.put("deliveryLocation", order.getDeliveryLocation());
-	        details.put("orderStatus", order.getOrderStatus());
-	        details.put("receiverName", order.getReceiverName());
-	        details.put("receiverPhone", order.getReceiverPhone());
-	        details.put("orderId", order.getId());
-	        return details;
-	    }).collect(Collectors.toList());
-
-	    // List of statuses for the dropdown
-	    List<String> statuses = Arrays.asList("Pending", "Shipped", "Delivered", "Cancelled");
-
-	    model.addAttribute("orderDetails", orderDetails);
-	    model.addAttribute("statuses", statuses);
-	    return "orders";
-	}
-
-
-	
-	@GetMapping("/updateorder")
-	public String updateOrder(HttpSession session, RedirectAttributes attribute, Model model,@RequestParam String orderStatus, @RequestParam Long orderId){
 		if (session.getAttribute("admin") == null) {
-	        attribute.addFlashAttribute("error", "Please login");
-	        return "redirect:/login";
-	    }
-       Orders order = orderService.getById(orderId);		
-	   order.setOrderStatus(orderStatus);
-	   orderService.save(order);
-	   attribute.addFlashAttribute("success", "Order status updated");
-	   return "redirect:/adminDashboard";
+			attribute.addFlashAttribute("error", "Please login");
+			return "redirect:/login";
+		}
+		List<Orders> orders = orderService.getPendingOrders();
+		List<Map<String, Object>> orderDetails = orders.stream().map(order -> {
+			System.out.println(order);
+			Map<String, Object> details = new HashMap<>();
+			details.put("productName", order.getProduct().getName());
+			details.put("price", order.getProduct().getPrice());
+			details.put("ingredients", order.getProduct().getIngredients());
+			details.put("deliveryLocation", order.getDeliveryLocation());
+			details.put("orderStatus", order.getOrderStatus());
+			details.put("receiverName", order.getReceiverName());
+			details.put("receiverPhone", order.getReceiverPhone());
+			details.put("orderId", order.getId());
+			return details;
+		}).collect(Collectors.toList());
+		List<String> statuses = Arrays.asList("Pending", "Shipped", "Delivered", "Cancelled");
+		model.addAttribute("orderDetails", orderDetails);
+		model.addAttribute("statuses", statuses);
+		return "orders";
 	}
 
+	@GetMapping("/updateorder")
+	public String updateOrder(HttpSession session, RedirectAttributes attribute, Model model,
+			@RequestParam String orderStatus, @RequestParam Long orderId) {
+		if (session.getAttribute("admin") == null) {
+			attribute.addFlashAttribute("error", "Please login");
+			return "redirect:/login";
+		}
+		Orders order = orderService.getById(orderId);
+		order.setOrderStatus(orderStatus);
+		orderService.save(order);
+		attribute.addFlashAttribute("success", "Order status updated");
+		return "redirect:/adminDashboard";
+	}
+
+	@GetMapping("/productsforstocks")
+	public String productsforstock(HttpSession session, RedirectAttributes attribute, Model model) {
+		if (session.getAttribute("admin") == null) {
+			attribute.addFlashAttribute("error", "Please login");
+			return "redirect:/login";
+		}
+		List<Products> products = productService.getProducts(); 
+		List<List<Products>> partitionedProducts = productService.partitionList(products, 3); 
+		model.addAttribute("partitionedProducts", partitionedProducts);
+		return "productsforstocks";
+	}
+
+	@GetMapping("/productforstock")
+	public String productsforstocks(@RequestParam Long id, Long stocktoadd, Model model, RedirectAttributes attribute) {
+		Products product = productService.getById(id);
+		product.setStock(product.getStock() + stocktoadd);
+		productService.save(product);
+		attribute.addFlashAttribute("success", "Stock updated to " + product.getStock());
+		return "redirect:/productsforstocks";
+	}
+
+	@PostMapping("/search")
+	public String search(@RequestParam String name, Model model) {
+		List<Products> products = productService.getProductBySimiliarName(name);
+		List<List<Products>> partitionedProducts = productService.partitionList(products, 3); 
+		model.addAttribute("partitionedProducts", partitionedProducts);
+		return "allproducts";
+	}
 
 }

@@ -23,4 +23,6 @@ public interface ProductsService {
 
 	Products getProductByOrderId(Long orderId);
 	
+	List<Products> getProductBySimiliarName(String name);
+	
 }
