@@ -20,6 +20,6 @@ public class User {
     private String password;
     @Transient
     private String password2;
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true,fetch = FetchType.EAGER)
     private List<Orders> orders;
 }

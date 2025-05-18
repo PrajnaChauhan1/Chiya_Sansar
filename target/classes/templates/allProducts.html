@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="css/allProducts.css">
+<title>Website Header</title>
+</head>
+
+<body>
+	<div class="navbar">
+		<img src="images/Natural Organic Green Tea Logo 1.png" alt=""
+			class="logo">
+		<div class="buttons">
+			<a href="/home">Home</a>
+			 <a href="/aboutus">About Us</a> 
+			 <a href="/allproducts">Products</a>
+		</div>
+		
+
+		<a href="/login" class="login" style="margin-left:300px;">LOGIN</a>
+	</div>
+
+	<div></div>
+	<div class="container">
+		<span class="headingbody"> BROWSE PRODUCT </span>
+		<div th:each="chunk : ${partitionedProducts}" class="whole-container">
+			<div class="product-container">
+				<a th:each="product : ${chunk}" th:href="@{/product(id=${product.id})}" class="product"> 
+				<img th:src="@{${product.imagePath}}" alt="" class="thumbnail"/> <br> 
+				<span class="name" th:text="${product.name}"></span> <br> 
+				<span class="price" th:text="'Rs. ' + ${product.price}"></span>
+				</a>
+			</div>
+		</div>
+
+	</div>
+
+	<footer class="footer">
+		<div class="footer-content">
+			<div class="footer-logo">
+				<img src="images/Natural Organic Green Tea Logo 1.png"
+					alt="Chiya Sansar Logo" class="logo">
+				<!-- Replace with your logo path -->
+
+			</div>
+			<div class="footer-contact">
+				<h4>Contact Information</h4>
+				<p>Phone: 01-41414141</p>
+				<p>Email: chiyasansar@gmail.com</p>
+				<div class="social-icons">
+					<a href="#"><img src="images/download 48.png" alt="Facebook"></a>
+					<!-- Replace icons with actual paths -->
+					<a href="#"><img src="images/download 49.png" alt="Instagram"></a>
+				</div>
+			</div>
+			<div class="footer-contact">
+				<h4>Contact Information</h4>
+				<p>Phone: 01-41414141</p>
+			</div>
+			<div class="footer-credits">
+				<h4>Website Created by</h4>
+				<p>Pragya Chauhan & Sameer Khatri</p>
+			</div>
+		</div>
+
+		<div class="footer-bottom">
+			<hr>
+			<p>&copy; 2024 by Chiya Sansar | All rights Reserved |</p>
+		</div>
+	</footer>
+</body>
+
+</html>

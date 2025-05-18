@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.illam.chiya.enums.Tags;
 import com.illam.chiya.model.Products;
 import com.illam.chiya.repository.OrderRepository;
 import com.illam.chiya.repository.ProductRepository;
@@ -82,6 +83,12 @@ public class ProductServiceImpl implements ProductsService{
 	public List<Products> getProductBySimiliarName(String name) {
 		
 		return productRepo.findByNameContainingIgnoreCase(name);
+	}
+
+	@Override
+	public List<Products> getProductsByTags(List<Tags> tags) {
+		
+		return productRepo.findByTagsIn(tags);
 	}
 	
 }

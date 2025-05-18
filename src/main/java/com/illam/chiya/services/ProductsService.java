@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import com.illam.chiya.enums.Tags;
 import com.illam.chiya.model.Products;
 
 public interface ProductsService {
@@ -24,5 +25,7 @@ public interface ProductsService {
 	Products getProductByOrderId(Long orderId);
 	
 	List<Products> getProductBySimiliarName(String name);
+	
+	List<Products> getProductsByTags(List<Tags> tags);
 	
 }

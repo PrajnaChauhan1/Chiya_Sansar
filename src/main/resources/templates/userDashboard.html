@@ -11,8 +11,8 @@
         <a href="/history" class="button">PURCHASE HISTORY</a>
         <a href="/pendingorders" class="button">PENDING ORDERS</a>
         <div class="search">
-            <form action="" class="form">
-                <input type="text" required placeholder="Search..." class="searchfield">
+            <form action="/search" class="form" method="post">
+                <input type="text" required name="name" placeholder="Search..." class="searchfield">
                 <button type="submit" class="searchbutton"><img src="images/searchicon.png" class="searchicon"
                         alt=""></button>
             </form>
@@ -24,6 +24,13 @@
             <img src="images/logout.png" style="height: 20px;" alt="logout">
         </div>
     </div>
+    <div class="product-ids" th:if="${not #lists.isEmpty(products)}">
+    <p>Recommended Product IDs: 
+        <span th:each="product, iterStat : ${products}">
+            <span th:text="${product.id}"></span><span th:if="${!iterStat.last}">, </span>
+        </span>
+    </p>
+</div>
     <div class="main-container">
         <br><br><br><br><br><br>
         <span class="catchyphrase">

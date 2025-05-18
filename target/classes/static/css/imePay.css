@@ -1,0 +1,55 @@
+ body {
+            font-family: Arial, sans-serif;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            margin-left: 36%;
+            width: 400px;
+            margin-top: 50px;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+            height: 330px;
+        }
+        .header {
+            background-color: #E8252F;
+            color: white;
+            padding: 10px;
+            height: 40px;
+            margin-top: 20px;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        input[type=text] {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin-top: 10px;
+            margin-bottom: -10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        input[type=password] {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin-top: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        button {
+            width: 70px;
+            padding: 10px;
+            background-color: #E8252F;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .copyright{
+            margin-left: 38%;
+            margin-top: 20px;
+            font-size: small;
+        }
