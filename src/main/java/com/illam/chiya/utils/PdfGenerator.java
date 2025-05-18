@@ -24,7 +24,7 @@ public class PdfGenerator {
 			ConverterProperties converterProperties= new ConverterProperties();
 			converterProperties.setFontProvider(defaultFontProvider);
 			HtmlConverter.convertToPdf(html, pdfWrter, converterProperties);
-			FileOutputStream fileOut= new FileOutputStream("");
+			FileOutputStream fileOut= new FileOutputStream("C:\\Users\\utsav\\OneDrive\\Documents\\workspace-spring-tool-suite-4-4.18.0.RELEASE\\Chiya-Sansar\\src\\main\\resources\\static\\bills"+filename+".pdf");
 			byteArrayOutputStream.writeTo(fileOut);
 			byteArrayOutputStream.close();
 			byteArrayOutputStream.flush();

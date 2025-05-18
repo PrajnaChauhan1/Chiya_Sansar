@@ -1,6 +1,12 @@
 package com.illam.chiya.model;
 
+import java.util.List;
+
+import com.illam.chiya.enums.Tags;
+
+import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -21,4 +27,6 @@ public class Products {
     private String imagePath;
     private String description;
     private String ingredients;
+    @ElementCollection(fetch = FetchType.EAGER)
+    private List<Tags> tags;
 }

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login Page</title>
+<link rel="stylesheet" href="css/login.css">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+	<header>
+		<div class="logo">
+			<img src="images/Natural Organic Green Tea Logo 1.png" alt="Logo">
+		</div>
+		<nav>
+			<ul>
+				<li><a href="/home">Home</a></li>
+				<li><a href="/aboutus">About Us</a></li>
+				<li><a href="/allproducts">Products</a></li>
+			</ul>
+		</nav>
+		<div class="search-bar">
+			<form action="/search" method="post">
+        <input type="text" placeholder="Search..." name="name" required>
+            <button><i class="fas fa-search"></i></button>
+        </form>
+		</div>
+	</header>
+
+	<main>
+		<div class="login-container">
+			<div class="login-box">
+				<h2>LOGIN</h2>
+				<form action="/login" method="post">
+					<p th:if="${adminName}" style="color: green;"
+						th:text="${adminName}"></p>
+					<p th:if="${error}" style="color: red;" th:text="${error}"></p>
+					<p th:if="${success}" style="color: green;" th:text="${success}"></p>
+					<label for="email">Email:</label> <input type="email" id="email"
+						name="email" placeholder="Enter your email" required> <label
+						for="password">Password:</label> <input type="password"
+						id="password" name="password" placeholder="Enter your password"
+						required>
+
+					<button type="submit">LOGIN</button>
+					<p>
+						Don't have an account? <a href="/signup">Sign up</a>
+					</p>
+				</form>
+			</div>
+		</div>
+	</main>
+
+	<footer class="footer">
+		<div class="footer-content">
+			<div class="footer-logo">
+				<img src="images/Natural Organic Green Tea Logo 1.png"
+					alt="Chiya Sansar Logo" class="logo">
+				<!-- Replace with your logo path -->
+
+			</div>
+			<div class="footer-contact">
+				<h4>Contact Information</h4>
+				<p>Phone: 01-41414141</p>
+				<p>Email: chiyasansar@gmail.com</p>
+				<div class="social-icons">
+					<a href="#"><img src="images/download 48.png" alt="Facebook"></a>
+					<!-- Replace icons with actual paths -->
+					<a href="#"><img src="images/download 49.png" alt="Instagram"></a>
+				</div>
+			</div>
+
+			<div class="footer-credits">
+				<h4>Website Created by</h4>
+				<p>Pragya Chauhan & Sameer Khatri</p>
+			</div>
+		</div>
+
+		<div class="footer-bottom">
+			<hr>
+			<p>&copy; 2024 by Chiya Sansar | All rights Reserved |</p>
+		</div>
+	</footer>
+</body>
+</html>

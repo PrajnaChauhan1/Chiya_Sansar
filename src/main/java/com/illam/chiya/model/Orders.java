@@ -1,6 +1,7 @@
 package com.illam.chiya.model;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -20,10 +21,10 @@ public class Orders {
 	private String receiverPhone;
 	private String orderStatus;
 	private String deliveryLocation;
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "user_id", nullable = false)
 	private User user;
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "product_id", nullable = false) // Link each order to a product
     private Products product;
 }

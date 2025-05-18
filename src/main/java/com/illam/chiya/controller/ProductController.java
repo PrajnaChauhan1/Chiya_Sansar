@@ -1,5 +1,9 @@
 package com.illam.chiya.controller;
 
+import java.io.File;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -16,13 +20,18 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.thymeleaf.TemplateEngine;
+import org.thymeleaf.context.Context;
+import org.thymeleaf.spring6.SpringTemplateEngine;
 
+import com.illam.chiya.enums.Tags;
 import com.illam.chiya.model.Orders;
 import com.illam.chiya.model.Products;
 import com.illam.chiya.model.User;
 import com.illam.chiya.services.OrderService;
 import com.illam.chiya.services.ProductsService;
 import com.illam.chiya.utils.MailUtils;
+import com.illam.chiya.utils.PdfGenerator;
 import com.itextpdf.io.exceptions.IOException;
 
 import jakarta.servlet.http.HttpSession;
@@ -39,6 +48,9 @@ public class ProductController {
 	@Autowired
 	MailUtils mailUtils;
 
+	@Autowired
+	PdfGenerator pdfgenerator;
+	
 	@GetMapping("/aboutus")
 	public String aboutUs() {
 
@@ -46,13 +58,17 @@ public class ProductController {
 	}
 
 	@GetMapping("/addproduct")
-	public String addProduct(HttpSession session, RedirectAttributes attribute) {
+	public String addProduct(HttpSession session, RedirectAttributes attribute,Model model) {
 		if (session.getAttribute("admin") == null) {
 			attribute.addFlashAttribute("error", "Please login");
 			return "redirect:/login";
 		}
+		List<Tags> tagsList = new ArrayList<>();
+        for (Tags tag : Tags.values()) {
+            tagsList.add(tag);
+        }
+        model.addAttribute("tagsList", tagsList);
 		return "addProduct";
-
 	}
 
 	@PostMapping("/addproduct")
@@ -164,7 +180,7 @@ public class ProductController {
 	}
 
 	@PostMapping("/otp")
-	public String postOtp(HttpSession session, RedirectAttributes attribute, @RequestParam String otp) {
+	public String postOtp(HttpSession session, RedirectAttributes attribute, @RequestParam String otp,Model model) {
 		if (session.getAttribute("user") == null) {
 			attribute.addFlashAttribute("error", "Please login before buying");
 			return "redirect:/login";
@@ -174,6 +190,7 @@ public class ProductController {
 			attribute.addFlashAttribute("error", "Invalid OTP! Try again");
 			return "redirect:/otp";
 		}
+		User user = (User) session.getAttribute("user");
 		Orders order = (Orders) session.getAttribute("order");
 		order.setOrderStatus("Pending");
 		order.setUser((User) session.getAttribute("user"));
@@ -182,6 +199,13 @@ public class ProductController {
 		order.setProduct(product);
 		productService.save(product);
 		orderService.save(order);
+		String htmlContent = generateHTMLContent(model, product.getName(), product.getPrice(), LocalDate.now(), order.getDeliveryLocation());
+		String filename = "ticket" + LocalTime.now().getNano();
+		pdfgenerator.generateTicket(htmlContent, filename);
+		String filepath = "C:\\Users\\utsav\\OneDrive\\Documents\\workspace-spring-tool-suite-4-4.18.0.RELEASE\\Chiya-Sansar\\src\\main\\resources\\static\\bills"+filename+".pdf";
+		File bill = new File(filepath);
+		mailUtils.sendEmailWithAttachment(user.getEmail(), "Your bill for your purchase",
+				"Your purchase", bill);
 		session.removeAttribute("purchaseattemptproductid");
 		return "redirect:/purchasesuccess";
 	}
@@ -288,6 +312,83 @@ public class ProductController {
 		List<List<Products>> partitionedProducts = productService.partitionList(products, 3); 
 		model.addAttribute("partitionedProducts", partitionedProducts);
 		return "allproducts";
+	}
+	
+	public String generateHTMLContent(Model model,String name, Float price, LocalDate date, String location) {
+		Context context = new Context();
+		context.setVariable("name", name);
+		context.setVariable("price", price);
+		context.setVariable("date", date);
+		context.setVariable("location", location);
+		model.asMap().forEach(context::setVariable);
+		TemplateEngine templateEngine = new SpringTemplateEngine();
+		String html = "<meta charset=\"UTF-8\">\r\n"
+				+ "<html xmlns:th=\"http://www.thymeleaf.org\">\r\n"
+				+ "\r\n"
+				+ "<body>\r\n"
+				+ "\r\n"
+				+ "    <head>\r\n"
+				+ "        <style>\r\n"
+				+ "            body {\r\n"
+				+ "                display: flex;\r\n"
+				+ "                align-items: center;\r\n"
+				+ "                justify-content: center;\r\n"
+				+ "            }\r\n"
+				+ "\r\n"
+				+ "            .container {\r\n"
+				+ "                display: flex;\r\n"
+				+ "                flex-direction: column;\r\n"
+				+ "                text-align: center;\r\n"
+				+ "                background-color: #FBF9F1;\r\n"
+				+ "                border-radius: 28px;\r\n"
+				+ "                width: 500px;\r\n"
+				+ "                height: 250px;\r\n"
+				+ "            }\r\n"
+				+ "\r\n"
+				+ "            .heading {\r\n"
+				+ "                color: #2D5B4E;\r\n"
+				+ "                font-weight: bold;\r\n"
+				+ "            }\r\n"
+				+ "\r\n"
+				+ "            .sub-container {\r\n"
+				+ "                display: flex;\r\n"
+				+ "                flex-direction: row;\r\n"
+				+ "                margin-top: 30px;\r\n"
+				+ "            }\r\n"
+				+ "\r\n"
+				+ "            .mini-container {\r\n"
+				+ "                text-align: left;\r\n"
+				+ "                margin-left: 50px;\r\n"
+				+ "            }\r\n"
+				+ "\r\n"
+				+ "            .info {\r\n"
+				+ "                color: black;\r\n"
+				+ "            }\r\n"
+				+ "        </style>\r\n"
+				+ "    </head>\r\n"
+				+ "    <div class=\"container\">\r\n"
+				+ "        <h1 class=\"heading\">Chiya Sansar</h1>\r\n"
+				+ "        <div class=\"sub-container\">\r\n"
+				+ "            <div class=\"mini-container\">\r\n"
+				+ "                <p class=\"info\">Name: <span th:text=\"${name}\">Product Name</span></p>\r\n"
+				+ "                <p class=\"info\">Price: Rs. <span th:text=\"${price}\">1200</span></p>\r\n"
+				+ "            </div>\r\n"
+				+ "            <div class=\"mini-container\" style=\"margin-left: 100px;\">\r\n"
+				+ "                <p class=\"info\">\r\n"
+				+ "                    Date: <span th:text=\"${date}\">Date</span>\r\n"
+				+ "                </p>\r\n"
+				+ "                <p class=\"info\">\r\n"
+				+ "                    Location: <span th:text=\"${location}\">Kathmandu</span>\r\n"
+				+ "                </p>\r\n"
+				+ "            </div>\r\n"
+				+ "        </div>\r\n"
+				+ "    </div>\r\n"
+				+ "</body>\r\n"
+				+ "\r\n"
+				+ "</html>\r\n"
+				+ "";
+		String content = templateEngine.process(html, context);
+		return content;
 	}
 
 }
